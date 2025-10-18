@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://nihtdigitalmarketing.com/
+
+# Sitemaps
+Sitemap: https://nihtdigitalmarketing.com/sitemap.xml
