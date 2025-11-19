@@ -25,9 +25,8 @@ import {
   CircleArrowUp,
 } from "lucide-react"
 import { motion, useScroll, useTransform, useInView, useSpring, Variants } from "framer-motion"
-import HoverPlayCard from "../ui/videoPlay/hover-paly"
-import ScrollLevel from "./scrollLevel"
 import HoverPreviewCard from "../ui/videoPlay/hover-paly"
+import ScrollLevel from "./scrollLevel"
 
 
 
@@ -53,7 +52,6 @@ export default function OurCourseUpdate({ course }: OurCourseProps) {
   const isInView = useInView(sectionRef, { once: false, amount: 0.1 })
   const isStatsInView = useInView(statsRef, { once: false, amount: 0.3 })
 
-  // Parallax effect for decorative elements
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
@@ -68,7 +66,6 @@ export default function OurCourseUpdate({ course }: OurCourseProps) {
     setIsVisible(true)
   }, [])
 
-  // ✅ Fixed Variants type
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -85,11 +82,9 @@ export default function OurCourseUpdate({ course }: OurCourseProps) {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }, // cubic-bezier instead of string
+      transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] },
     },
   }
-
-
 
   const stats = [
     { icon: <Trophy className="text-blue-600" />, value: 3.6, label: "Highest Package", suffix: "LPA" },
@@ -104,7 +99,6 @@ export default function OurCourseUpdate({ course }: OurCourseProps) {
       ref={sectionRef}
       className="w-full py-12 min-h-screen px-4 text-[#202e44] overflow-hidden relative bg- flex flex-col justify-center"
     >
-      {/* Decorative background elements */}
       <motion.div
         className="absolute top-20 left-10 w-64 h-64 rounded-full blur-3xl bg-[#88734C]/5"
         style={{ y: y1, rotate: rotate1 }}
@@ -120,9 +114,8 @@ export default function OurCourseUpdate({ course }: OurCourseProps) {
         animate={isInView ? "visible" : "hidden"}
         variants={containerVariants}
       >
-        {/* Heading */}
+        {/* Heading Section */}
         <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] mb-12">
-          {/* Left (30%) */}
           <div className="mx-0 mb-4">
             <HoverPreviewCard
               src={
@@ -131,9 +124,8 @@ export default function OurCourseUpdate({ course }: OurCourseProps) {
             />
           </div>
 
-          {/* Right (70%) */}
           <motion.div
-            className="flex flex-col items-center lg:items-start mx-0 md:mx-8 mb-6" // changed items-left → items-start
+            className="flex flex-col items-center lg:items-start mx-0 md:mx-8 mb-6"
             variants={itemVariants}
           >
             <motion.span
@@ -151,14 +143,14 @@ export default function OurCourseUpdate({ course }: OurCourseProps) {
             </h2>
 
             <motion.div
-              className="w-24 h-1 bg-blue-500 self-center lg:self-start" // align bar to left on desktop
+              className="w-24 h-1 bg-blue-500 self-center lg:self-start"
               initial={{ width: 0 }}
               animate={{ width: 96 }}
               transition={{ duration: 1, delay: 0.5 }}
             />
 
             <motion.p
-              className="max-w-2xl text-[#202e44]/80 text-center mt-6 lg:text-left" // remove mx-auto to avoid centering
+              className="max-w-2xl text-[#202e44]/80 text-center mt-6 lg:text-left"
               variants={itemVariants}
             >
               We are a passionate team of designers and architects dedicated to
@@ -169,11 +161,27 @@ export default function OurCourseUpdate({ course }: OurCourseProps) {
           </motion.div>
         </div>
 
+        {/* 
+        ===========================================
+        ✅ Mobile Only Accordion (Default OPEN)
+        ===========================================
+        */}
+        <div className="block lg:hidden mb-10">
+          <details open className="bg-white shadow-md p-4 rounded-lg cursor-pointer">
+            <summary className="font-semibold text-lg text-blue-600">
+              Basic Level Course Details
+            </summary>
 
+            <p className="mt-3 text-[#202e44]/80">
+              We are a passionate team of designers and architects dedicated to
+              creating beautiful, functional spaces that inspire and elevate everyday
+              living. This is the basic level information for mobile view.
+            </p>
+          </details>
+        </div>
 
-        {/* Services Grid */}
+        {/* Services Section */}
         <div className="">
-
           <ScrollLevel />
         </div>
 
@@ -201,14 +209,6 @@ export default function OurCourseUpdate({ course }: OurCourseProps) {
   )
 }
 
-// ==========================
-// Service Item Component
-// ==========================
-
-
-// ==========================
-// Stats Counter Component
-// ==========================
 interface StatCounterProps {
   icon: React.ReactNode
   value: number
@@ -247,6 +247,7 @@ function StatCounter({ icon, value, label, suffix, delay }: StatCounterProps) {
       <motion.div className="w-14 h-14 rounded-full flex items-center justify-center mb-4 ">
         {icon}
       </motion.div>
+
       <motion.div ref={countRef} className="text-3xl font-bold  flex items-center">
         <motion.span>{displayValue}</motion.span>
         <span className="text-blue-700/80">{suffix}</span>

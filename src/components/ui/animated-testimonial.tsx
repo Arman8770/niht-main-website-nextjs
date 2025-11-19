@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { ArrowBigLeft, ArrowBigRight, Calendar, Clock, MapPin } from "lucide-react";
+import { Calendar, Clock, MapPin } from "lucide-react";
+import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 
 type EventType = {
   title: string;
@@ -28,7 +29,6 @@ export const AnimatedTestimonials = ({
   const [active, setActive] = useState(0);
   const [randomRotations, setRandomRotations] = useState<number[]>([]);
 
-  // Initialize random rotations only on client side
   useEffect(() => {
     setRandomRotations(teams.map(() => Math.floor(Math.random() * 21) - 10));
   }, [teams.length]);
@@ -53,14 +53,15 @@ export const AnimatedTestimonials = ({
   return (
     <div
       className={cn(
-        "max-w-sm md:max-w-4xl mx-auto px-4 md:px-8 lg:px-12",
+        "max-w-6xl lg:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10",
         className
       )}
     >
-      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-20">
-        {/* Left: Image animation */}
-        <div>
-          <div className="relative h-80 w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+        {/* LEFT: IMAGE */}
+        <div className="w-full flex justify-center">
+          <div className="relative w-full h-64 sm:h-80 md:h-[420px] lg:h-[480px]">
             <AnimatePresence>
               {teams.map((team, index) => (
                 <motion.div
@@ -68,36 +69,23 @@ export const AnimatedTestimonials = ({
                   initial={{
                     opacity: 0,
                     scale: 0.9,
-                    z: -100,
                     rotate: randomRotations[index] || 0,
                   }}
                   animate={{
-                    opacity: isActive(index) ? 1 : 0.7,
+                    opacity: isActive(index) ? 1 : 0.6,
                     scale: isActive(index) ? 1 : 0.95,
-                    z: isActive(index) ? 0 : -100,
                     rotate: isActive(index) ? 0 : randomRotations[index] || 0,
-                    zIndex: isActive(index) ? 999 : teams.length + 2 - index,
-                    y: isActive(index) ? [0, -80, 0] : 0,
+                    zIndex: isActive(index) ? 30 : 10,
                   }}
-                  exit={{
-                    opacity: 0,
-                    scale: 0.9,
-                    z: 100,
-                    rotate: randomRotations[index] || 0,
-                  }}
-                  transition={{
-                    duration: 0.4,
-                    ease: "easeInOut",
-                  }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
                   className="absolute inset-0 origin-bottom"
                 >
                   <Image
                     src={team.src}
                     alt={team.title}
-                    width={500}
-                    height={500}
-                    draggable={false}
-                    className="h-full w-full rounded-3xl object-cover object-center"
+                    fill
+                    className="rounded-3xl object-cover"
                   />
                 </motion.div>
               ))}
@@ -105,68 +93,85 @@ export const AnimatedTestimonials = ({
           </div>
         </div>
 
-        {/* Right: Event Details */}
-        <div className="flex flex-col justify-between py-4">
+        {/* RIGHT: CONTENT BOX */}
+        <div className="w-full">
           <motion.div
             key={active}
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -20, opacity: 0 }}
-            transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="bg-white rounded-xl shadow border p-6 space-y-4"
+            transition={{ duration: 0.25 }}
+            className="bg-white rounded-2xl shadow-lg border border-blue-600 p-6 md:p-8 space-y-5"
           >
-            {/* Mode (Offline/Online) */}
             <span className="inline-block text-xs px-3 py-1 rounded-full border border-orange-400 text-orange-500">
               {teams[active].mode}
             </span>
 
-            {/* Title */}
-            <h3 className="text-lg font-semibold text-gray-900">
+            <h3 className="text-xl md:text-3xl font-semibold text-gray-900 leading-snug">
               {teams[active].title}
             </h3>
 
             {/* Date + Time */}
-            <div className="flex items-center gap-2 text-sm text-gray-600">
-              <Calendar className="h-4 w-4 text-blue-500" />
-              <span>{teams[active].date}</span>
-              <Clock className="h-4 w-4 text-blue-500 ml-3" />
-              <span>{teams[active].time}</span>
+            <div className="
+                flex flex-col md:flex-row 
+                items-start md:items-center 
+                gap-1 md:gap-3 
+                text-sm md:text-base text-gray-600
+              ">
+              <div className="flex items-center gap-2">
+                <Calendar className="h-4 w-4 text-blue-500" />
+                <span>{teams[active].date}</span>
+              </div>
+
+              <div className="flex items-center gap-2 md:ml-3 mt-4 md:mt-0">
+                <Clock className="h-4 w-4 text-blue-500" />
+                <span>{teams[active].time}</span>
+              </div>
             </div>
 
             {/* Location */}
-            <div className="flex items-center gap-2 text-sm text-gray-600">
-              <MapPin className="h-4 w-4 text-blue-500" />
-              <span>{teams[active].location}</span>
+            <div className="
+                flex flex-col md:flex-row 
+                items-start md:items-center 
+                gap-1 md:gap-2 
+                text-sm md:text-base text-gray-600
+              ">
+              <div className="flex items-center gap-2">
+                <MapPin className="h-4 w-4 text-blue-500" />
+                <span>{teams[active].location}</span>
+              </div>
             </div>
 
-            <hr className="my-2" />
 
-            {/* Registered + Button */}
+            <hr className="text-blue-300" />
+
             <div className="flex items-center justify-between">
-              
-              <button className="bg-blue-700 text-white px-6 py-2 rounded-full hover:bg-blue-800 transition">
+              <button className="bg-blue-700 text-white text-sm md:text-base px-6 py-2 rounded-full hover:bg-blue-800 transition">
                 Register Now
               </button>
-              <p className="text-sm text-gray-700 font-medium text-center">
-                <span className="font-bold ">{teams[active].registered}</span>{" "}
-                +Students<br/> Enrolled
+
+              <p className="text-sm md:text-base text-gray-700 font-medium text-right leading-tight">
+                <span className="font-bold text-lg md:text-xl">
+                  {teams[active].registered}
+                </span>
+                + <br /> Students Enrolled
               </p>
             </div>
           </motion.div>
 
-          {/* Navigation Arrows */}
-          <div className="flex gap-4 pt-6">
+          {/* ARROWS */}
+          <div className="flex gap-4 pt-6 text-blue-600">
             <button
               onClick={handlePrev}
-              className="h-7 w-7 rounded-full bg-secondary flex items-center justify-center group/button"
+              className="h-10 w-10  bg-blue-100 hover:bg-blue-200 rounded-full flex items-center justify-center transition"
             >
-              <ArrowBigLeft className="h-5 w-5 text-foreground group-hover/button:rotate-12 transition-transform duration-300" />
+              <IoChevronBack size={22} />
             </button>
+
             <button
               onClick={handleNext}
-              className="h-7 w-7 rounded-full bg-secondary flex items-center justify-center group/button"
+              className="h-10 w-10 bg-blue-100 hover:bg-blue-200 rounded-full flex items-center justify-center transition"
             >
-              <ArrowBigRight className="h-5 w-5 text-foreground group-hover/button:-rotate-12 transition-transform duration-300" />
+              <IoChevronForward size={22} />
             </button>
           </div>
         </div>

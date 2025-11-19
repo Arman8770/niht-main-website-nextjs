@@ -128,7 +128,7 @@ const SocialProofSection = () => {
     }
   ];
 
-    const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [mutedIndex, setMutedIndex] = useState<number | null>(null);
 
   function extractYouTubeID(url: string) {
@@ -156,11 +156,11 @@ const SocialProofSection = () => {
           </p>
         </div>
 
-        {/* Two-column layout */}
-        <div className="flex flex-col lg:flex-row gap-8">
+        {/* Two-column layout FIXED for desktop */}
+        <div className="grid grid-cols-1 gap-10 items-stretch">
 
-          {/* Left Column: Stats Grid */}
-          <div className="lg:w-1/2 grid grid-cols-2 gap-4">
+          {/* LEFT COLUMN — Stats Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 h-full">
             {stats.map((stat, index) => {
               const numericValue = parseFloat(stat.number.replace(/[^0-9.]/g, ""));
               const hasPlus = stat.number.includes("+");
@@ -176,16 +176,13 @@ const SocialProofSection = () => {
                       {stat.icon}
                     </div>
                     <div className="flex flex-col flex-grow justify-center">
-                      <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-2">
+                      <div className="text-3xl lg:text-4xl font-bold text-black mb-2">
                         <CountUp end={numericValue} duration={2.5} separator="," />
                         {hasPlus && "+"}
                         {hasPercent && "%"}
                       </div>
-                      <div className="font-semibold text-sm sm:text-base text-black mb-1">
+                      <div className="font-semibold text-base text-black mb-1">
                         {stat.label}
-                      </div>
-                      <div className="text-xs sm:text-sm text-muted-foreground">
-                        {stat.description}
                       </div>
                     </div>
                   </CardContent>
@@ -194,101 +191,82 @@ const SocialProofSection = () => {
             })}
           </div>
 
-          {/* Right Column: Video Carousel */}
-          <div id="voices" className="lg:w-1/2 relative">
-            {/* Custom Navigation Arrows */}
-            {/* <div className="absolute top-1/2 -translate-y-1/2 left-0 z-10 w-full flex justify-between px-2">
-              <button
-                ref={navigationPrevRef}
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-white/80 shadow-lg hover:bg-white transition-colors z-20"
-              >
-                <ChevronLeft className="w-6 h-6 text-gray-800" />
-              </button>
-              <button
-                ref={navigationNextRef}
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-white/80 shadow-lg hover:bg-white transition-colors z-20"
-              >
-                <ChevronRight className="w-6 h-6 text-gray-800" />
-              </button>
-            </div> */}
-
+          {/* RIGHT COLUMN — Video Slider */}
+          <div id="voices" className="relative w-full h-full">
             <Swiper
-            modules={[Pagination, Navigation, Autoplay]}
-            navigation
-            loop
-            spaceBetween={16}
-            slidesPerView={1}
-            breakpoints={{
-              0: { slidesPerView: 1, spaceBetween: 16 },
-              768: { slidesPerView: 2, spaceBetween: 16 },
-              1024: { slidesPerView: 2, spaceBetween: 16 },
-            }}
-            className="swiper-wrapper"
-          >
-            {testimonialVideos.map((video, index) => (
-              <SwiperSlide key={index} className="flex !h-auto">
-                <div className="w-full h-full aspect-[9/16] rounded-xl overflow-hidden shadow-soft hover:shadow-medium transition-all duration-300 relative group cursor-pointer">
-                  {/* Thumbnail overlay */}
-                  <Image
-                    src={video.image}
-                    alt="video thumbnail"
-                    className={`absolute inset-0 w-full h-full object-cover rounded-xl transition-opacity duration-300 ${
-                      activeIndex === index ? "opacity-0" : "opacity-100"
-                    }`}
-                  />
+              modules={[Pagination, Navigation, Autoplay]}
+              navigation
+              loop
+              spaceBetween={16}
+              slidesPerView={1}
+              breakpoints={{
+                0: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 4 }, // ❗ Fix for desktop layout
+              }}
+              className="h-full"
+            >
+              {testimonialVideos.map((video, index) => (
+                <SwiperSlide key={index} className="flex !h-auto">
+                  <div className="w-full aspect-[9/16] rounded-xl overflow-hidden shadow-soft hover:shadow-medium transition-all duration-300 relative group cursor-pointer">
 
-                  {/* YouTube iframe */}
-                  {activeIndex === index && (
-                    <iframe
-                      className="absolute inset-0 w-full h-full rounded-xl transition-opacity duration-300 opacity-100"
-                      src={`https://www.youtube.com/embed/${extractYouTubeID(
-                        video.src
-                      )}?autoplay=1&mute=${
-                        mutedIndex === index ? 1 : 0
-                      }&playsinline=1`}
-                      title="YouTube video"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
+                    {/* Thumbnail */}
+                    <Image
+                      src={video.image}
+                      alt="video thumbnail"
+                      className={`absolute inset-0 w-full h-full object-cover rounded-xl transition-opacity duration-300 ${activeIndex === index ? "opacity-0" : "opacity-100"
+                        }`}
                     />
-                  )}
 
-                  {/* Play button */}
-                  {activeIndex !== index && (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="absolute inline-flex w-24 h-24 rounded-full bg-white/30 animate-ping"></span>
-                      <span className="absolute inline-flex w-32 h-32 rounded-full bg-white/10 animate-ping delay-150"></span>
+                    {/* Video Player */}
+                    {activeIndex === index && (
+                      <iframe
+                        className="absolute inset-0 w-full h-full rounded-xl"
+                        src={`https://www.youtube.com/embed/${extractYouTubeID(
+                          video.src
+                        )}?autoplay=1&mute=${mutedIndex === index ? 1 : 0}&playsinline=1`}
+                        title="YouTube video"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    )}
+
+                    {/* Play Button */}
+                    {activeIndex !== index && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="absolute inline-flex w-24 h-24 rounded-full bg-white/30 animate-ping"></span>
+                        <span className="absolute inline-flex w-32 h-32 rounded-full bg-white/10 animate-ping delay-150"></span>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setActiveIndex(index);
+                          }}
+                          className="relative w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300"
+                        >
+                          <Image src={Play} alt="Play" className="w-8 h-8" />
+                        </button>
+                      </div>
+                    )}
+
+                    {/* Sound Toggle */}
+                    {activeIndex === index && (
                       <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setActiveIndex(index);
-                        }}
-                        className="relative w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300"
+                        onClick={() =>
+                          setMutedIndex((m) => (m === index ? null : index))
+                        }
+                        className="absolute bottom-3 right-3 z-20 w-10 h-10 rounded-full bg-white text-black flex items-center justify-center shadow-lg"
                       >
-                        <Image src={Play} alt="Play" className="w-8 h-8" />
+                        {mutedIndex === index ? "🔇" : "🔊"}
                       </button>
-                    </div>
-                  )}
-
-                  {/* Mute/unmute button */}
-                  {activeIndex === index && (
-                    <button
-                      onClick={() =>
-                        setMutedIndex((muted) =>
-                          muted === index ? null : index
-                        )
-                      }
-                      className="absolute bottom-3 right-3 z-20 w-10 h-10 rounded-full bg-white text-black flex items-center justify-center shadow-lg"
-                    >
-                      {mutedIndex === index ? "🔇" : "🔊"}
-                    </button>
-                  )}
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                    )}
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </div>
+
       </div>
     </section>
   );

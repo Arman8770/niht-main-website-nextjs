@@ -14,19 +14,31 @@ import ExperientialLeaning from "./ExperientialLeaning";
 import { NihtCelebration } from "./NihtCelebration";
 import { Testimonials } from "./Testimonial";
 import GalleryZoomParallax from "./Gallery/zoom-parallax";
+import HeroSectionV2 from "./HeroSection2";
+import NIHTEDGE from "./NihtEdge/nihtedge";
+import SmallBanner from "./SmallBanner/smallbanner";
+import LifeAtNihtGallery from "./lifeNiht/lifeniht";
 
 
 const DigitalMarketing = () => {
   return (
     <div className="min-h-screen overflow-y-auto overflow-x-hidden">
-      <HeroSection />
+      {/* <HeroSection /> */}
+      <HeroSectionV2 />
+      <NIHTEDGE />
       <OurAlumni />
-      <PlacementPartnersSection />
       <PostGraduateSection />
+      <SmallBanner />
       {/* <WhyChooseSection /> */}
+      <PlacementPartnersSection />
+
       <SocialProofSection />
       <OurTeam />
+      
       <FeaturesFaq />
+      <SmallBanner />
+
+      
       <TargetAudienceSection />
       <Testimonials />
       {/* <CurriculumSection /> */}
@@ -34,7 +46,8 @@ const DigitalMarketing = () => {
       {/* <HandsOnSection /> */}
       <ExperientialLeaning />
       {/* <AITechSection /> */}
-      <NihtCelebration />
+      {/* <NihtCelebration /> */}
+      <LifeAtNihtGallery />
       
       <FAQSection />
     </div>

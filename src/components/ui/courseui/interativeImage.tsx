@@ -50,7 +50,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ item, isActive, onMouseEn
       className={`
         relative h-[450px] rounded-2xl overflow-hidden cursor-pointer
         transition-all duration-700 ease-in-out
-        ${isActive ? 'w-[400px]' : 'w-[60px]'}
+        ${isActive ? 'w-[260px] lg:w-[400px]' : 'w-[60px]'}
       `}
       onMouseEnter={onMouseEnter}
     >
@@ -64,18 +64,14 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ item, isActive, onMouseEn
         }}
       />
 
-      {/* Dark overlay for better text readability */}
-      <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-
       {/* Caption Text */}
       <span
         className={`
           absolute text-white text-lg font-semibold whitespace-nowrap
           transition-all duration-300 ease-in-out
-          ${
-            isActive
-              ? 'bottom-6 left-1/2 -translate-x-1/2 rotate-0' // Active state: horizontal, bottom-center
-              : 'w-auto text-left bottom-24 left-1/2 -translate-x-1/2 rotate-90'
+          ${isActive
+            ? 'bottom-6 left-1/2 -translate-x-1/2 rotate-0'
+            : 'bottom-24 left-1/2 -translate-x-1/2 rotate-90'
           }
         `}
       >
@@ -87,7 +83,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ item, isActive, onMouseEn
 
 // --- Main App Component ---
 export const LandingAccordionItem: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState<number>(4);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const handleItemHover = (index: number) => {
     setActiveIndex(index);
@@ -97,6 +93,7 @@ export const LandingAccordionItem: React.FC = () => {
     <div className="bg-white font-sans">
       <section className="container mx-auto px-4 py-12 md:py-24">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+          
           {/* Left Side: Text Content */}
           <div className="w-full md:w-1/2 text-center md:text-left">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight tracking-tighter">
@@ -117,17 +114,26 @@ export const LandingAccordionItem: React.FC = () => {
 
           {/* Right Side: Image Accordion */}
           <div className="w-full md:w-1/2">
-            <div className="flex flex-row items-center justify-center gap-4 overflow-x-auto p-4">
+            <div
+              className="
+                flex flex-row items-center gap-4 p-4
+                overflow-x-auto md:overflow-visible
+                scrollbar-hide
+                snap-x snap-mandatory
+              "
+            >
               {accordionItems.map((item, index) => (
-                <AccordionItem
-                  key={item.id}
-                  item={item}
-                  isActive={index === activeIndex}
-                  onMouseEnter={() => handleItemHover(index)}
-                />
+                <div key={item.id} className="snap-start">
+                  <AccordionItem
+                    item={item}
+                    isActive={index === activeIndex}
+                    onMouseEnter={() => handleItemHover(index)}
+                  />
+                </div>
               ))}
             </div>
           </div>
+
         </div>
       </section>
     </div>

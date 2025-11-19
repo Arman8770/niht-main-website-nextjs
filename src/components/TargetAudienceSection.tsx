@@ -5,6 +5,12 @@ import { Button } from "@/components/ui/button";
 import { GraduationCap, Briefcase, Rocket } from "lucide-react";
 import { usePopup } from "./form/PopupProvider";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+
+
 const TargetAudienceSection = () => {
   const { openPopup } = usePopup();
 
@@ -57,32 +63,90 @@ const TargetAudienceSection = () => {
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        {/* Mobile Carousel */}
+        <div className="block md:hidden">
+          <Swiper
+            modules={[Pagination]}
+            pagination={{ clickable: true }}
+            spaceBetween={20}
+            slidesPerView={1.1}
+          >
+            {audiences.map((audience, index) => (
+              <SwiperSlide key={index}>
+                <Card
+                  className="
+            rounded-2xl 
+            border border-transparent 
+            shadow-lg 
+            bg-gradient-to-br from-white via-blue-50 to-blue-100 
+            p-6 
+            transform transition-all duration-300 
+            hover:shadow-2xl hover:-translate-y-1 
+            hover:scale-105
+            overflow-hidden
+            h-full
+          "
+                >
+                  <CardContent className="p-6 flex flex-col space-y-4">
+                    <div className="flex items-center space-between">
+                      <div className="flex items-center space-x-3">
+                        <div className="p-2 bg-gray-100 rounded-full">{audience.icon}</div>
+                        <CardTitle className="text-lg font-semibold text-gray-900">
+                          {audience.title}
+                        </CardTitle>
+                      </div>
+                    </div>
+
+                    <p className="text-gray-700">{audience.description}</p>
+
+                    <ul className="space-y-2 text-gray-600 py-2 text-sm">
+                      {audience.benefits.map((b, i) => (
+                        <li key={i} className="flex items-center space-x-2">
+                          <span className="w-4 h-4 bg-blue-600 rounded-full flex-shrink-0"></span>
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <Button onClick={openPopup} variant="cta" className="mt-4">
+                      Book a call
+                    </Button>
+                  </CardContent>
+                </Card>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        {/* Desktop Grid */}
+        <div className="hidden md:grid gap-8 md:grid-cols-3">
           {audiences.map((audience, index) => (
             <Card
               key={index}
               className="
-                    rounded-2xl 
-                    border border-transparent 
-                    shadow-lg 
-                    bg-gradient-to-br from-white via-blue-50 to-blue-100 
-                    p-6 
-                    transform transition-all duration-300 
-                    hover:shadow-2xl hover:-translate-y-1 
-                    hover:scale-105
-                    overflow-hidden
-                  ">
+        rounded-2xl 
+        border border-transparent 
+        shadow-lg 
+        bg-gradient-to-br from-white via-blue-50 to-blue-100 
+        p-6 
+        transform transition-all duration-300 
+        hover:shadow-2xl hover:-translate-y-1 
+        hover:scale-105
+        overflow-hidden
+      "
+            >
               <CardContent className="p-6 flex flex-col space-y-4">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center space-between">
                   <div className="flex items-center space-x-3">
                     <div className="p-2 bg-gray-100 rounded-full">{audience.icon}</div>
-                    <CardTitle className="text-lg font-semibold text-gray-900">{audience.title}</CardTitle>
+                    <CardTitle className="text-lg font-semibold text-gray-900">
+                      {audience.title}
+                    </CardTitle>
                   </div>
-                  {/* <span className="text-sm text-gray-400">{audience.stats}</span> */}
                 </div>
+
                 <p className="text-gray-700">{audience.description}</p>
 
-                {/* Benefits list */}
                 <ul className="space-y-2 text-gray-600 py-2 text-sm">
                   {audience.benefits.map((b, i) => (
                     <li key={i} className="flex items-center space-x-2">
@@ -92,18 +156,14 @@ const TargetAudienceSection = () => {
                   ))}
                 </ul>
 
-                {/* CTA Button */}
-                <Button
-                  onClick={openPopup}
-                  variant={"cta"}
-                  className="mt-4"
-                >
+                <Button onClick={openPopup} variant="cta" className="mt-4">
                   Book a call
                 </Button>
               </CardContent>
             </Card>
           ))}
         </div>
+
       </div>
     </section>
   );

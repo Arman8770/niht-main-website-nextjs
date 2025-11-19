@@ -21,12 +21,13 @@ import StartFreeLearning from '@/components/courses/startLearningWithMentor';
 import CircularGalleryNIHT from '@/components/Gallery/CircularGallery';
 import OurCourseUpdate from '@/components/courses/ourCourseUpdate';
 import CohortTable from '@/components/courses/cohortTable';
-import { LandingAccordionItem } from '@/components/ui/courseui/interativeImage';
 import { CertificationSection } from '@/components/courses/certificate';
 import Logomarquee from '@/components/ui/courseui/logoMarque';
 import ToolsLogo from '@/components/courses/tools';
 import OurProjects from '@/components/ourProjects/projects';
 import StudentsBrandWork from '@/components/courses/ourStudentsWorkBrand';
+import LifeAtNihtGallery from '@/components/lifeNiht/lifeniht';
+import { LandingAccordionItem } from '@/components/ui/courseui/interativeImage';
 
 
 
@@ -79,7 +80,9 @@ export default function CoursePage({ params }: PageProps) {
       
 
       {/* <GalleryZoomParallax /> */}
-      <NihtCelebration />
+      {/* <NihtCelebration /> */}
+      <LifeAtNihtGallery />
+
       {/* <CircularGalleryNIHT /> */}
       {/* <Mentor /> */}
       <FAQSection />

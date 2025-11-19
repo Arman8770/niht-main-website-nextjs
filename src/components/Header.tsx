@@ -36,10 +36,10 @@ const menuData = [
   {
     title: "Student Center",
     items: [
-      { label: "Placements Reports", href: "/student/placements" },
+      { label: "Placements Reports", href: "/placement-report" },
       { label: "Trainers", href: "/student/trainers" },
-      { label: "Alumni", href: "/student/alumni" },
-      { label: "Why Choose NIHT", href: "/student/why-niht" },
+      { label: "Alumni", href: "/alumni" },
+      { label: "Why Choose NIHT", href: "/why-niht" },
       { label: "Student Testimonials", href: "/student/testimonials" },
       { label: "Campus Life", href: "/student/campus-life" },
     ],

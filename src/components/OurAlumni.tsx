@@ -25,15 +25,12 @@ const OurAlumni = () => {
   ];
 
   return (
-    <section
-      id="why-niht"
-      className="py-16 bg-[#f3f3f3]"
-    >
+    <section id="why-niht" className="py-8 bg-[#f3f3f3]">
       <div className="container mx-auto px-6">
-        <div className="bg-white rounded-3xl p-10 shadow-xl relative overflow-hidden">
+        <div className="bg-white rounded-3xl p-6 shadow-xl relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-brand-primary/10 via-brand-secondary/10 to-brand-primary/10 opacity-30 blur-3xl" />
 
-          <div className="relative text-center mb-12">
+          <div className="relative text-center mb-8">
             <h3 className="text-2xl md:text-4xl  font-bold text-foreground mb-2 md:mb-6">
               Our Alumni
             </h3>
@@ -45,35 +42,34 @@ const OurAlumni = () => {
 
           {/* Alumni Showcase */}
           <div className="overflow-hidden relative">
-            <div className="flex animate-marquee gap-10">
+            {/* marquee wrapper: flex with centered items, nowrap */}
+            <div className="flex gap-6 items-center animate-marquee">
               {alumnis.concat(alumnis).map((alumni, index) => (
-                <div key={index} className="book-wrapper min-w-[260px]">
-                  <div className="book">
-                    {/* Alumni Photo */}
-                    <Image
-                      src={alumni.person}
-                      alt="Alumni"
-                      className="w-full h-full object-cover"
-                    />
+                // Fixed width, no shrink so aspect-square is reliable
+                <div key={index} className="flex-shrink-0 w-40">
+                  {/* card: square, relative for Image fill */}
+                  <div className="relative aspect-square rounded-xl overflow-hidden bg-gray-100">
+                    {/* PERSON IMAGE — 1:1 PERFECT SQUARE */}
+                    <Image src={alumni.person} alt="Alumni" fill className="object-cover" />
 
-                    {/* Company Logo in top-right corner */}
-                    <div className="book-logo">
+                    {/* SMALL COMPANY LOGO — 12x12-14x14 px */}
+                    <div className="absolute top-2 right-2 bg-white p-1 rounded-md shadow flex items-center justify-center">
                       <Image
                         src={alumni.company}
                         alt="Company"
-                        className="w-full h-full object-contain"
+                        width={24}
+                        height={24}
+                        className="object-contain"
                       />
                     </div>
                   </div>
                 </div>
-
               ))}
             </div>
           </div>
+
         </div>
       </div>
-
-
     </section>
   );
 };

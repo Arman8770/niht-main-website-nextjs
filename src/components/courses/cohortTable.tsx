@@ -94,45 +94,60 @@ const CohortTable: React.FC = () => {
         </table>
       </div>
 
-      {/* Mobile Card Layout */}
-      <div className="md:hidden mt-4 space-y-4">
-        {cohorts.map((cohort, idx) => (
-          <div
-            key={idx}
-            className="bg-white shadow-md rounded-lg p-4 flex flex-col gap-2"
-          >
-            <div className="flex items-center gap-2">
-              <Image
-                src={campusIcons[cohort.campus]}
-                alt={cohort.campus}
-                width={24}
-                height={24}
-              />
-              <span className="font-medium text-gray-800">{cohort.campus}</span>
-            </div>
-            <div className="text-gray-700">
-              <span className="font-medium">Batch Type: </span>
-              {cohort.batchType}
-            </div>
-            <div className="text-gray-700">
-              <span className="font-medium">Application Deadline: </span>
-              {cohort.applicationDeadline}
-            </div>
-            <div className="text-gray-700">
-              <span className="font-medium">Batch Starts: </span>
-              {cohort.batchStarts}
-            </div>
-            <div>
-              <span className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
-                {cohort.batchCapacity}
-              </span>
-            </div>
-            <button className="mt-2 bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition">
-              Apply Now
-            </button>
-          </div>
-        ))}
+      {/* Mobile Card Layout - Improved Premium UI */}
+<div className="md:hidden mt-6 space-y-5">
+  {cohorts.map((cohort, idx) => (
+    <div
+      key={idx}
+      className="bg-white border border-gray-200 shadow-sm rounded-xl p-4"
+    >
+      {/* Campus */}
+      <div className="flex items-center gap-3 pb-3 border-b border-blue-200">
+        <Image
+          src={campusIcons[cohort.campus]}
+          alt={cohort.campus}
+          width={30}
+          height={30}
+          className="rounded-md"
+        />
+        <span className="font-semibold text-lg text-gray-900">
+          {cohort.campus}
+        </span>
       </div>
+
+      {/* Details */}
+      <div className="mt-3 space-y-2 text-sm">
+        <div className="flex justify-between">
+          <span className="text-gray-500 font-medium">Batch Type</span>
+          <span className="text-gray-900">{cohort.batchType}</span>
+        </div>
+
+        <div className="flex justify-between">
+          <span className="text-gray-500 font-medium">Deadline</span>
+          <span className="text-gray-900">{cohort.applicationDeadline}</span>
+        </div>
+
+        <div className="flex justify-between">
+          <span className="text-gray-500 font-medium">Batch Starts</span>
+          <span className="text-gray-900">{cohort.batchStarts}</span>
+        </div>
+
+        <div className="flex justify-between items-center">
+          <span className="text-gray-500 font-medium">Capacity</span>
+          <span className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">
+            {cohort.batchCapacity}
+          </span>
+        </div>
+      </div>
+
+      {/* Button */}
+      <button className="w-full mt-4 bg-blue-700 text-white py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-800 transition">
+        Apply Now
+      </button>
+    </div>
+  ))}
+</div>
+
     </div>
   );
 };

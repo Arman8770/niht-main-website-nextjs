@@ -38,7 +38,7 @@ const PlacementPartnersSection = () => {
   ];
 
   return (
-    <section id="placements" className="py-16 bg-gradient-to-br from-white to-brand-secondary/5">
+    <section id="placements" className="py-16 bg-gradient-to-l from-white to-blue-100/60">
       <div className="container mx-auto px-6">
         <h3 className="text-2xl md:text-4xl text-center font-bold text-foreground mb-2 md:mb-6">
           Our Placement Partners

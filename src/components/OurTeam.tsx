@@ -69,10 +69,8 @@ function OurTeam() {
                         Experience learning, networking, and inspiration — right at your fingertips.
                     </p>
                 </div>
-                    
                     <AnimatedTestimonials teams={Events} autoplay className="max-w-lg" />
                 </div>
-
             </div>
         </section>
     )

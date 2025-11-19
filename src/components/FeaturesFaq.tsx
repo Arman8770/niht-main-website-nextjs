@@ -2,7 +2,7 @@ import { Features } from "@/components/ui/features";
 
 import { Brain, BrainCog } from "lucide-react";
 
-const features= [
+const features = [
   {
     id: 1,
     icon: BrainCog,
@@ -17,7 +17,7 @@ const features= [
     title: "Why AI Experts?",
     description:
       "Get instant, accurate help from experts—whether it's for coding or understanding tough concepts. They are trained on their expertise.",
-    image: "https://bcalabs.org/companions_group_1.jpg",
+    image: "https://bcalabs.org/companions_group_2.jpg",
   },
   {
     id: 3,
@@ -31,14 +31,12 @@ const features= [
 
 const FeaturesFaq = () => {
   return (
-  <Features 
-  primaryColor="sky-500"
-  progressGradientLight="bg-gradient-to-r from-sky-400 to-sky-500"
-  progressGradientDark="bg-gradient-to-r from-sky-300 to-sky-400" 
-  features={features} />
+    <Features
+      primaryColor="sky-500"
+      progressGradientLight="bg-gradient-to-r from-sky-400 to-sky-500"
+      progressGradientDark="bg-gradient-to-r from-sky-300 to-sky-400"
+      features={features} />
   )
-  
-
 };
 
 export { FeaturesFaq };

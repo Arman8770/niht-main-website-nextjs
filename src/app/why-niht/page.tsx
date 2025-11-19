@@ -1,6 +1,7 @@
 "use client"
 import FAQSection from '@/components/FAQSection'
 import { FeaturesFaq } from '@/components/FeaturesFaq'
+import LifeAtNihtGallery from '@/components/lifeNiht/lifeniht'
 import { NihtCelebration } from '@/components/NihtCelebration'
 import { ProfessionalTimeline } from '@/components/ui/courseui/profetionalTimeline'
 import FeaturesFaq2 from '@/components/whyNiht/features'
@@ -20,7 +21,9 @@ const WhyNIHTPage = () => {
     <QuantumTimeline />
     <JourneyTimeline />
     <FounderAndTeam />
-    <NihtCelebration />
+    {/* <NihtCelebration /> */}
+      <LifeAtNihtGallery />
+
     <FAQSection />
     
     </div>

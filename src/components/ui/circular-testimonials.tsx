@@ -8,6 +8,7 @@ import React, {
 } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 
 interface Testimonial {
   quote: string;
@@ -246,28 +247,28 @@ export const CircularTestimonials = ({
           </AnimatePresence>
           <div className="arrow-buttons">
             <button
-              className="arrow-button prev-button"
+              className="arrow-button prev-button bg-blue-100 hover:bg-blue-200"
               onClick={handlePrev}
-              style={{
-                backgroundColor: hoverPrev ? colorArrowHoverBg : colorArrowBg,
-              }}
+              // style={{
+              //   backgroundColor: hoverPrev ? colorArrowHoverBg : colorArrowBg,
+              // }}
               onMouseEnter={() => setHoverPrev(true)}
               onMouseLeave={() => setHoverPrev(false)}
               aria-label="Previous testimonial"
             >
-              <FaArrowLeft size={28} color={colorArrowFg} />
+              <IoChevronBack size={28} className="text-blue-600" />
             </button>
             <button
-              className="arrow-button next-button"
+              className="arrow-button next-button bg-blue-100 hover:bg-blue-200"
               onClick={handleNext}
-              style={{
-                backgroundColor: hoverNext ? colorArrowHoverBg : colorArrowBg,
-              }}
+              // style={{
+              //   backgroundColor: hoverNext ? colorArrowHoverBg : colorArrowBg,
+              // }}
               onMouseEnter={() => setHoverNext(true)}
               onMouseLeave={() => setHoverNext(false)}
               aria-label="Next testimonial"
             >
-              <FaArrowRight size={28} color={colorArrowFg} />
+              <IoChevronForward size={28} className="text-blue-600" />
             </button>
           </div>
         </div>
