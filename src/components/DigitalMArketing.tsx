@@ -37,8 +37,6 @@ const DigitalMarketing = () => {
       
       <FeaturesFaq />
       <SmallBanner />
-
-      
       <TargetAudienceSection />
       <Testimonials />
       {/* <CurriculumSection /> */}

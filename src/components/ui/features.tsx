@@ -25,21 +25,22 @@ export function Features({
 }: FeaturesProps) {
   const [currentFeature, setCurrentFeature] = useState(0);
   const [progress, setProgress] = useState(0);
+
   const featureRefs = useRef<(HTMLDivElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  // NEW: mobile slider container reference
+  // Mobile slider
   const mobileSliderRef = useRef<HTMLDivElement | null>(null);
 
-  // Autoplay progress bar
+  // AUTOPLAY PROGRESS
   useEffect(() => {
     const interval = setInterval(() => {
-      setProgress((prev) => (prev >= 100 ? 100 : prev + 1));
+      setProgress((p) => (p >= 100 ? 100 : p + 1));
     }, 100);
     return () => clearInterval(interval);
   }, []);
 
-  // Autoplay feature switch
+  // SWITCH FEATURE
   useEffect(() => {
     if (progress >= 100) {
       setTimeout(() => {
@@ -49,42 +50,42 @@ export function Features({
     }
   }, [progress]);
 
-  // Desktop centering
+  // DESKTOP CENTERING
   useEffect(() => {
     if (typeof window === "undefined") return;
+    if (window.innerWidth < 1024) return;
 
-    const activeFeatureElement = featureRefs.current[currentFeature];
+    const activeEl = featureRefs.current[currentFeature];
     const container = containerRef.current;
 
-    if (activeFeatureElement && container && window.innerWidth >= 1024) {
-      const containerRect = container.getBoundingClientRect();
-      const elementRect = activeFeatureElement.getBoundingClientRect();
+    if (!activeEl || !container) return;
 
-      container.scrollTo({
-        left:
-          activeFeatureElement.offsetLeft -
-          (containerRect.width - elementRect.width) / 2,
-        behavior: "smooth",
-      });
-    }
+    const containerRect = container.getBoundingClientRect();
+    const elementRect = activeEl.getBoundingClientRect();
+
+    container.scrollTo({
+      left:
+        activeEl.offsetLeft -
+        (containerRect.width - elementRect.width) / 2,
+      behavior: "smooth",
+    });
   }, [currentFeature]);
 
-  // ⭐ NEW: MOBILE AUTOPLAY SCROLL FIX ⭐
+  // ⭐ FIXED MOBILE AUTOPLAY SCROLL ⭐
   useEffect(() => {
     if (typeof window === "undefined") return;
-
-    if (window.innerWidth >= 1024) return; // only mobile/tablet
+    if (window.innerWidth >= 1024) return; // Mobile only
 
     const container = mobileSliderRef.current;
     if (!container) return;
 
-    const child = container.children[0] as HTMLElement;
-    if (!child) return;
+    const card = container.children[currentFeature] as HTMLElement;
+    if (!card) return;
 
-    const childWidth = child.clientWidth + 16; // +16 for mx-2 gap
+    const cardWidth = card.clientWidth + 16; // mx-2 gap
 
     container.scrollTo({
-      left: currentFeature * childWidth,
+      left: currentFeature * cardWidth,
       behavior: "smooth",
     });
   }, [currentFeature]);
@@ -95,67 +96,76 @@ export function Features({
   };
 
   return (
-    <div className="min-h-screen py-16 px-4">
+    <div className="min-h-screen py-16 px-4 bg-blue-50">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
+        {/* HEADER */}
         <div className="text-center mb-16">
           <span className="text-sky-500 font-semibold text-sm uppercase tracking-wider">
             AI Mentors. Real Results.
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mt-4 mb-6">
+          <h2 className="text-2xl md:text-4xl font-bold text-black dark:text-white mt-4 mb-6">
             AI That Actually Teaches
           </h2>
         </div>
 
-        {/* Desktop & Tab Layout */}
+        {/* DESKTOP LAYOUT */}
         <div className="grid lg:grid-cols-2 lg:gap-16 gap-8 items-center hidden lg:grid">
           <div
             ref={containerRef}
-            className="lg:space-y-8 md:space-x-6 lg:space-x-0 overflow-x-auto overflow-hidden no-scrollbar lg:overflow-visible flex lg:flex lg:flex-col flex-row order-1 pb-4 scroll-smooth"
+            className="lg:space-y-8 overflow-x-auto no-scrollbar flex flex-row lg:flex-col scroll-smooth pb-4"
           >
             {features.map((feature, index) => {
               const Icon = feature.icon;
               const isActive = currentFeature === index;
+
               return (
                 <div
                   key={feature.id}
-                  ref={(el) => {
-                    featureRefs.current[index] = el;
-                  }}
-                  className="relative cursor-pointer flex-shrink-0"
+                  // ref={(el) => (featureRefs.current[index] = el)}
                   onClick={() => handleFeatureClick(index)}
+                  className="relative cursor-pointer flex-shrink-0"
                 >
                   <div
-                    className={`flex lg:flex-row flex-col items-start space-x-4 p-3 max-w-sm md:max-w-sm lg:max-w-2xl transition-all duration-300 ${isActive
-                        ? "bg-white dark:bg-black/80 md:shadow-xl dark:drop-shadow-lg rounded-xl md:border dark:border-none border-gray-200"
+                    className={`flex flex-col lg:flex-row items-start space-x-4 p-3 max-w-sm lg:max-w-2xl transition-all duration-300 ${
+                      isActive
+                        ? "bg-white dark:bg-black/80 shadow-xl dark:drop-shadow-lg rounded-xl border border-gray-200 dark:border-none"
                         : ""
-                      }`}
+                    }`}
                   >
+                    {/* ICON */}
                     <div
-                      className={`p-3 hidden md:block rounded-full transition-all duration-300 ${isActive
+                      className={`p-3 hidden md:block rounded-full transition-all duration-300 ${
+                        isActive
                           ? "bg-sky-500 text-white"
                           : "bg-sky-500/10 dark:bg-black/80 text-sky-500"
-                        }`}
+                      }`}
                     >
                       <Icon size={24} />
                     </div>
+
+                    {/* TITLE + DESCRIPTION */}
                     <div className="flex-1">
                       <h3
-                        className={`text-lg md:mt-4 lg:mt-0 font-semibold mb-2 transition-colors duration-300 ${isActive
+                        className={`text-lg md:mt-4 lg:mt-0 font-semibold mb-2 ${
+                          isActive
                             ? "text-gray-900 dark:text-white"
                             : "text-gray-700 dark:text-white/80"
-                          }`}
+                        }`}
                       >
                         {feature.title}
                       </h3>
+
                       <p
-                        className={`transition-colors duration-300 text-sm ${isActive
+                        className={`text-sm transition-colors ${
+                          isActive
                             ? "text-gray-600 dark:text-white/60"
                             : "text-gray-500 dark:text-white/40"
-                          }`}
+                        }`}
                       >
                         {feature.description}
                       </p>
+
+                      {/* PROGRESS BAR */}
                       <div className="mt-4 bg-white dark:bg-black/80 rounded-sm h-1 overflow-hidden">
                         {isActive && (
                           <motion.div
@@ -173,15 +183,13 @@ export function Features({
             })}
           </div>
 
-          {/* Right Image */}
-          <div className="relative order-1 max-w-lg mx-auto lg:order-2">
+          {/* RIGHT IMAGE */}
+          <div className="relative max-w-lg mx-auto">
             <motion.div
               key={currentFeature}
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -50 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="relative"
             >
               <Image
                 className="rounded-2xl border dark:border-none border-gray-50 shadow-lg dark:drop-shadow-lg"
@@ -193,39 +201,41 @@ export function Features({
             </motion.div>
           </div>
         </div>
+
         {/* MOBILE SLIDER */}
         <div className="lg:hidden">
           <motion.div
             ref={mobileSliderRef}
             className="flex overflow-x-auto no-scrollbar snap-x snap-mandatory"
-            initial={false}
-            animate={false}
           >
             {features.map((feature, index) => {
               const Icon = feature.icon;
+
               return (
                 <motion.div
                   key={feature.id}
-                  className="flex-shrink-0 snap-center w-[85vw] md:w-[60vw] mx-2 h-[520px]"  // 🔥 fixed equal height
+                  className="flex-shrink-0 snap-center w-[85vw] md:w-[60vw] mx-2 h-[520px]"
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
                 >
-                  <div className="bg-white dark:bg-black/80 rounded-xl shadow-lg p-6 flex flex-col h-full"> {/* 🔥 full height card */}
+                  <div className="bg-white dark:bg-black/80 rounded-xl shadow-lg p-6 flex flex-col h-full">
+                    {/* ICON */}
                     <div className="bg-sky-500 text-white rounded-full p-4 mb-4 mx-auto">
                       <Icon size={32} />
                     </div>
 
+                    {/* TITLE */}
                     <h3 className="text-lg font-semibold mb-2 text-center">
                       {feature.title}
                     </h3>
 
+                    {/* DESCRIPTION */}
                     <p className="text-sm text-gray-600 dark:text-white/60 text-center mb-4">
                       {feature.description}
                     </p>
 
-                    {/* Expand image */}
-                    <div className="flex-1 flex items-center justify-center"> {/* 🔥 keeps spacing equal */}
+                    {/* IMAGE */}
+                    <div className="flex-1 flex items-center justify-center">
                       <Image
                         className="rounded-xl border dark:border-none border-gray-50 shadow-lg dark:drop-shadow-lg"
                         src={feature.image}
@@ -235,6 +245,7 @@ export function Features({
                       />
                     </div>
 
+                    {/* PROGRESS BAR */}
                     <div className="w-full mt-4 bg-white dark:bg-black/80 rounded-sm h-1 overflow-hidden">
                       {currentFeature === index && (
                         <motion.div
@@ -251,21 +262,21 @@ export function Features({
             })}
           </motion.div>
 
-          {/* Mobile Dots */}
+          {/* DOTS */}
           <div className="flex justify-center mt-8">
             {features.map((_, index) => (
               <button
                 key={index}
                 onClick={() => handleFeatureClick(index)}
-                className={`w-3 h-3 rounded-full mx-1 transition-all ${currentFeature === index
+                className={`w-3 h-3 rounded-full mx-1 transition-all ${
+                  currentFeature === index
                     ? "bg-sky-500 scale-125"
                     : "bg-sky-500/30"
-                  }`}
+                }`}
               />
             ))}
           </div>
         </div>
-
       </div>
     </div>
   );

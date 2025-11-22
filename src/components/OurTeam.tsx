@@ -51,11 +51,11 @@ function OurTeam() {
         },
     ];
     return (
-        <section className="py-12 bg-gradient-to-b from-[#f9fafb] to-[#f3f3f3] ">
-            <div className="max-w-6xl mx-auto px-6  gap-8 items-center">
+        <section className="py-4 md:py-16">
+            <div className="container bg-white rounded-xl mx-auto px-6  gap-8 items-center">
                
                 {/* Left - OrbitingSkills (Static) */}
-                <div className="bg-white rounded-xl  py-16">
+                <div className="">
                      <div className="text-center mb-12">
                     <a href="#voices">
                         <Button variant="outline" className="btn-shine mb-4 text-brand-accent border-brand-accent">

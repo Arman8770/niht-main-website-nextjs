@@ -68,7 +68,7 @@ export default function PostGraduateSection() {
         </div>
 
         {/* RIGHT – Program Carousel */}
-        <div className="w-full">
+        <div className="w-full -mt-12 md:-mt-0">
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={40}

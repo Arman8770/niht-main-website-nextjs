@@ -192,7 +192,7 @@ export default function ScrollLevel() {
       <div className="hidden md:flex md:flex-row h-screen">
 
         {/* Sidebar */}
-        <div className="w-1/3 border-r p-4 space-y-2 overflow-y-auto">
+        <div className="w-1/3 border-r pr-4 space-y-2 overflow-y-auto">
           <h2 className="text-2xl font-bold mb-4">Course Levels</h2>
 
           {levels.map((level, index) => (

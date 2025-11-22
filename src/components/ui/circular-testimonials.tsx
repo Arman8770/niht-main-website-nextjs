@@ -204,20 +204,20 @@ export const CircularTestimonials = ({
               transition={{ duration: 0.3, ease: "easeInOut" }}
             >
               <h3
-                className="name"
-                style={{ color: colorName, fontSize: fontSizeName }}
+                className="name text-xl md:text-xl text-white"
+                // style={{ color: colorName, fontSize: fontSizeName }}
               >
                 {activeTestimonial.name}
               </h3>
               <p
-                className="designation"
-                style={{ color: colorDesignation, fontSize: fontSizeDesignation }}
+                className="designation text-m md:text-lg text-white"
+                // style={{ color: colorDesignation, fontSize: fontSizeDesignation }}
               >
                 {activeTestimonial.designation}
               </p>
               <motion.p
-                className="quote"
-                style={{ color: colorTestimony, fontSize: fontSizeQuote }}
+                className="quote text-m md:text-lg text-white"
+                // style={{ color: colorTestimony, fontSize: fontSizeQuote }}
               >
                 {activeTestimonial.quote.split(" ").map((word, i) => (
                   <motion.span

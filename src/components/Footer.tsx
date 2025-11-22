@@ -6,7 +6,7 @@ import NihtLogo from "@/assets/NIHT-LOGO-black-2.png";
 import Nihtyr from "@/assets/20year.png";
 import Image from "next/image";
 
-const CTASection = () => {
+const Footer = () => {
   const { openPopup } = usePopup();
   return (
     <section
@@ -100,13 +100,23 @@ const CTASection = () => {
 
             {/* Location Section */}
             <div className="bg-transparent text-white pt-8">
-              <div className="max-w-6xl mx-auto px-6 grid gap-8 grid-cols-2 md:grid-cols-3">
+              <div
+                className="max-w-6xl mx-auto px-6 
+                  grid gap-8 
+                  grid-cols-2 md:grid-cols-3
+                  justify-items-center text-center"
+              >
+
                 {["Bhawanipore Campus", "Ultadanga Campus", "Jayanagar Campus"].map(
                   (campus, i) => (
                     <a
                       key={i}
                       onClick={() => openPopup()}
-                      className="text-white/80 text-sm hover:text-white flex flex-col md:flex-row items-center gap-4 cursor-pointer"
+                      className={`
+        text-white/80 text-sm hover:text-white 
+        flex flex-col items-center gap-4 cursor-pointer
+        ${i === 2 ? "col-span-2 md:col-span-1" : ""}
+      `}
                     >
                       <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
                         <svg
@@ -128,6 +138,7 @@ const CTASection = () => {
                     </a>
                   )
                 )}
+
               </div>
             </div>
 
@@ -280,4 +291,4 @@ const CTASection = () => {
   );
 };
 
-export default CTASection;
+export default Footer;

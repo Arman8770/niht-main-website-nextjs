@@ -3,25 +3,10 @@
 import type React from "react"
 import { useState, useEffect, useRef } from "react"
 import {
-  Pen,
-  PaintBucket,
-  Home,
-  Ruler,
-  PenTool,
-  Building2,
-  Award,
-  Users,
-  Calendar,
-  CheckCircle,
-  Sparkles,
-  Star,
   Zap,
   TrendingUp,
   Trophy,
   Package,
-  PlayCircle,
-  CircleArrowOutUpRight,
-  CircleArrowOutDownLeft,
   CircleArrowUp,
 } from "lucide-react"
 import { motion, useScroll, useTransform, useInView, useSpring, Variants } from "framer-motion"
@@ -109,7 +94,7 @@ export default function OurCourseUpdate({ course }: OurCourseProps) {
       />
 
       <motion.div
-        className="container mx-auto max-w-6xl relative z-10"
+        className="container mx-auto px-6 relative z-10"
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={containerVariants}
@@ -166,7 +151,7 @@ export default function OurCourseUpdate({ course }: OurCourseProps) {
         ✅ Mobile Only Accordion (Default OPEN)
         ===========================================
         */}
-        <div className="block lg:hidden mb-10">
+        {/* <div className="block lg:hidden mb-10">
           <details open className="bg-white shadow-md p-4 rounded-lg cursor-pointer">
             <summary className="font-semibold text-lg text-blue-600">
               Basic Level Course Details
@@ -178,7 +163,7 @@ export default function OurCourseUpdate({ course }: OurCourseProps) {
               living. This is the basic level information for mobile view.
             </p>
           </details>
-        </div>
+        </div> */}
 
         {/* Services Section */}
         <div className="">

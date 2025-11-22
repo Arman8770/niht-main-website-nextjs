@@ -23,7 +23,7 @@ const CourseBannerSection = ({ slug }: Props) => {
 
   return (
     <section className="relative bg-[#FAF8F6]">
-      <div className="container mx-auto px-6 lg:px-12  py-8 lg:py-12 mt-12 md:mt-4">
+      <div className="container mx-auto px-6   py-8 lg:py-12 mt-12 md:mt-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center justify-center">
 
           {/* Left Content */}

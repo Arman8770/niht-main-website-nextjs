@@ -25,8 +25,8 @@ const OurAlumni = () => {
   ];
 
   return (
-    <section id="why-niht" className="py-8 bg-[#f3f3f3]">
-      <div className="container mx-auto px-6">
+    <section id="alumni" className="py-8 bg-[#f3f3f3]">
+      <div className="container mx-auto px-6 md:px-0">
         <div className="bg-white rounded-3xl p-6 shadow-xl relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-brand-primary/10 via-brand-secondary/10 to-brand-primary/10 opacity-30 blur-3xl" />
 
@@ -46,7 +46,7 @@ const OurAlumni = () => {
             <div className="flex gap-6 items-center animate-marquee">
               {alumnis.concat(alumnis).map((alumni, index) => (
                 // Fixed width, no shrink so aspect-square is reliable
-                <div key={index} className="flex-shrink-0 w-40">
+                <div key={index} className="flex-shrink-0 w-44">
                   {/* card: square, relative for Image fill */}
                   <div className="relative aspect-square rounded-xl overflow-hidden bg-gray-100">
                     {/* PERSON IMAGE — 1:1 PERFECT SQUARE */}
@@ -57,9 +57,9 @@ const OurAlumni = () => {
                       <Image
                         src={alumni.company}
                         alt="Company"
-                        width={24}
-                        height={24}
-                        className="object-contain"
+                        width={48}
+                        height={48}
+                        className="object-cover"
                       />
                     </div>
                   </div>

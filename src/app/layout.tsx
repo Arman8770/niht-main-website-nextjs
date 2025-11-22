@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Azeret_Mono, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import CTASection from "@/components/CTASection";
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { PopupProvider } from "@/components/form/PopupProvider";
 
@@ -38,7 +38,7 @@ export default function RootLayout({
         <PopupProvider >
           <Header />
           {children}
-          <CTASection />
+         <Footer />
         </PopupProvider>
       </body>
     </html>

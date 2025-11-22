@@ -48,7 +48,7 @@ const PlacementPartnersSection = () => {
         </p>
 
         {/* Marquee container */}
-        <div className="overflow-hidden relative w-full">
+        <div className="overflow-hidden relative w-full px-0">
           <div className="flex animate-marquee gap-8">
             {placementPartners.concat(placementPartners).map((company, index) => (
               <div

@@ -57,7 +57,7 @@ export default function NIHTEDGE() {
   ]
 
   const [maxHeight, setMaxHeight] = useState(0)
- const cardsRef = useRef<(HTMLDivElement | null)[]>([])
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
     if (cardsRef.current.length) {
@@ -68,7 +68,7 @@ export default function NIHTEDGE() {
 
   return (
     <section id="niht-edge" className="bg-gradient-to-r from-brand-primary/10 to-blue-50">
-      <div className="w-full pt-12 md:pt-20 pb-6 md:pb-10 px-4 bg-gradient-to-b from-gray-50 to-gray-100">
+      <div className="w-full pt-12 md:pt-20 pb-6 md:pb-10 px-6 bg-gradient-to-b from-gray-50 to-gray-100">
 
         {/* Heading */}
         <div className="text-center mb-6 md:mb-16">
@@ -82,7 +82,7 @@ export default function NIHTEDGE() {
         </div>
 
         {/* Swiper */}
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto ">
           <Swiper
             modules={[Pagination, Navigation, Autoplay]}
             navigation={{ enabled: true }}
@@ -100,16 +100,16 @@ export default function NIHTEDGE() {
             className="py-8"
           >
             {courses.map((course, idx) => (
-             <SwiperSlide key={idx} className="flex">
-  <div
-    ref={(el) => {
-      cardsRef.current[idx] = el
-    }}
-    className="h-full w-full"
-  >
-    <CourseCard course={course} maxHeight={maxHeight} />
-  </div>
-</SwiperSlide>
+              <SwiperSlide key={idx} className="flex">
+                <div
+                  ref={(el) => {
+                    cardsRef.current[idx] = el
+                  }}
+                  className="h-full w-full"
+                >
+                  <CourseCard course={course} maxHeight={maxHeight} />
+                </div>
+              </SwiperSlide>
             ))}
           </Swiper>
         </div>
