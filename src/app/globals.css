@@ -64,25 +64,25 @@
     transform: translateX(0%);
   }
   100% {
-    transform: translateX(-550%);
+    transform: translateX(-3050%);
   }
 }
 
 .animate-marquee {
   display: flex;
-  animation: marquee 15s linear infinite;
+  animation: marquee 96s linear infinite;
 }
 
 @media (min-width: 1024px) {
   .animate-marquee {
-    animation-duration: 15s; /* faster on desktop */
+    animation-duration: 64s; /* faster on desktop */
   }
   @keyframes marquee {
   0% {
     transform: translateX(0%);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-700%);
   }
 }
 }

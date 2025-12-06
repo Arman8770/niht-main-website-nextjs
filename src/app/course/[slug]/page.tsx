@@ -1,46 +1,39 @@
 // app/course/[slug]/page.tsx
-import CourseBanner from '@/components/courses/courseBanner';
 import { courses } from '@/app/data/courses';
 import React from 'react';
 import OurAlumni from '@/components/OurAlumni';
 import PlacementPartnersSection from '@/components/PlacementPartners';
-import OurCourse from '@/components/courses/ourCourse';
 import { notFound } from 'next/navigation';
 import FAQSection from '@/components/FAQSection';
-import { NihtCelebration } from '@/components/NihtCelebration';
 import SocialProofSection from '@/components/SocialProofSection';
-import Journey from '@/components/Journey/journey';
 import CourseSection from '@/components/ui/courseCard/coursedcard';
-import WhyChooseNIHT from '@/components/chooseUs/whyChooseNIHT';
-import Mentor from '@/components/Mentor/mentor';
 import CourseBannerSection from '@/components/courses/courseHero';
 import { OurTeam } from '@/components/OurTeam';
 import SmallBanner from '@/components/SmallBanner/smallbanner';
-import CourseSyllabus from '@/components/courses/syllabus';
 import StartFreeLearning from '@/components/courses/startLearningWithMentor';
-import CircularGalleryNIHT from '@/components/Gallery/CircularGallery';
 import OurCourseUpdate from '@/components/courses/ourCourseUpdate';
 import CohortTable from '@/components/courses/cohortTable';
 import { CertificationSection } from '@/components/courses/certificate';
-import Logomarquee from '@/components/ui/courseui/logoMarque';
 import ToolsLogo from '@/components/courses/tools';
 import OurProjects from '@/components/ourProjects/projects';
 import StudentsBrandWork from '@/components/courses/ourStudentsWorkBrand';
 import LifeAtNihtGallery from '@/components/lifeNiht/lifeniht';
 import { LandingAccordionItem } from '@/components/ui/courseui/interativeImage';
+import ToolsSection from '@/components/Tools';
 
-
-
+// 1. Update Interface: params is now a Promise
 interface PageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export function generateStaticParams() {
   return courses.map((c) => ({ slug: c.slug }));
 }
 
-export default function CoursePage({ params }: PageProps) {
-  const slug = params.slug; // ✅ no async, no await
+// 2. Make the component async
+export default async function CoursePage({ params }: PageProps) {
+  // 3. Await the params to get the slug
+  const { slug } = await params;
 
   const course = courses.find((c) => c.slug === slug);
 
@@ -50,41 +43,30 @@ export default function CoursePage({ params }: PageProps) {
 
   return (
     <div className="overflow-hidden">
-      {/* <CourseBanner slug={slug} /> */}
       <CourseBannerSection slug={slug} />
-      {/* <OurCourse course={course} /> */}
       <OurCourseUpdate course={course} />
-      <OurAlumni />
-      {/* <Journey /> */}
-      <SocialProofSection />
-
-      <PlacementPartnersSection />
       <CohortTable />
-      <LandingAccordionItem />
-
-      <CourseSection />
+      <OurAlumni />
+      <SocialProofSection />
+      {/* <PlacementPartnersSection /> */}
+      <ToolsSection />
+      {/* <LandingAccordionItem /> */}
+      {/* <CourseSection /> */}
       <CertificationSection />
-      <SmallBanner />
-      <ToolsLogo />
-      {/* <WhyChooseNIHT /> */}
+      <SmallBanner 
+        title="Become job ready. Become hire worthy. Become unstoppable." 
+        buttonText="Enroll Now" 
+      />
+      {/* <ToolsLogo /> */}
 
-      <OurTeam />
-      <SmallBanner />
-      {/* <CourseSyllabus /> */}
-      <StartFreeLearning />
-      <OurProjects  />
+      {/* <OurTeam /> */}
+      {/* <SmallBanner /> */}
+      {/* <StartFreeLearning /> */}
+      {/* <OurProjects  /> */}
+      {/* <SmallBanner /> */}
+      {/* <StudentsBrandWork /> */}
 
-      <SmallBanner />
-      <StudentsBrandWork />
-
-      
-
-      {/* <GalleryZoomParallax /> */}
-      {/* <NihtCelebration /> */}
       <LifeAtNihtGallery />
-
-      {/* <CircularGalleryNIHT /> */}
-      {/* <Mentor /> */}
       <FAQSection />
     </div>
   );

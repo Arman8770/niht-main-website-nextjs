@@ -3,19 +3,23 @@ import React from 'react';
 
 export const CertificationSection: React.FC = () => {
   return (
-    <section className="relative bg-white py-16 overflow-hidden">
+    <section className="relative bg-gray-50 pt-12 md:py-16 overflow-hidden">
       {/* Decorative Background Shapes */}
-      <div className="absolute -left-32 -top-32 w-96 h-96 bg-indigo-100 rounded-full opacity-30 blur-3xl pointer-events-none"></div>
-      <div className="absolute -right-32 -bottom-32 w-96 h-96 bg-pink-100 rounded-full opacity-30 blur-3xl pointer-events-none"></div>
+      {/* <div className="absolute -left-32 -top-32 w-96 h-96 bg-blue-100 rounded-full opacity-30 blur-3xl pointer-events-none"></div>
+      <div className="absolute -right-32 -bottom-32 w-96 h-96 bg-blue-100 rounded-full opacity-30 blur-3xl pointer-events-none"></div> */}
 
       <div className="container mx-auto px-4">
         {/* Heading */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight">
-            Get Hired with Globally Recognised Certification
+        <div className="text-center mb-6 md:mb-12">
+          <h2 className="text-2xl md:text-4xl font-extrabold text-gray-900 leading-tight tracking-tight">
+            Get Hired with Globally Recognised Certifications
           </h2>
+          {/* <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+            Stand out in the job market with certifications that top employers trust. Every credential you earn adds real credibility to your resume and shows companies that you’re trained, tested and ready for real digital marketing work.
+          </p> */}
+
           <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-            Our certifications are recognized worldwide and help you boost your career in digital marketing.
+            Earn credentials employers trust. Each certification proves your skills, strengthens your resume and helps you get hired faster for real digital marketing roles. Establish yourself as a high-value, job-ready candidate in a competitive market.
           </p>
         </div>
 

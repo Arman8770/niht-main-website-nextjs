@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Button } from "../ui/button";
+import { X } from "lucide-react";
 
 interface PopupFormProps {
   isOpen: boolean;
@@ -192,7 +193,7 @@ const PopupForm: React.FC<PopupFormProps> = ({ isOpen, onClose }) => {
               onClick={onClose}
               className="absolute top-2 right-2 text-gray-600 hover:text-gray-900 font-bold"
             >
-              ✕
+              <X />
             </button>
             <h2 className="text-xl font-semibold mb-4">Enroll Form</h2>
 

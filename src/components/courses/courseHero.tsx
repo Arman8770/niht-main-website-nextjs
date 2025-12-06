@@ -5,69 +5,91 @@ import Image from "next/image";
 import heroImage from "@/assets/niht-ai-hero-cover.webp";
 import { usePopup } from "../form/PopupProvider";
 import { courses } from "@/app/data/courses";
-import NihtImg from "@/assets/niht-digital-marketing.png";
-import NihtImg2 from "@/assets/niht-digital-marketing-logo.png";
+import NihtImg from "@/assets/course/profile/Payel-Sadhya.png";
+import NihtImg2 from "@/assets/course/profile/Kushal-Agarwal.png";
+import NihtImg3 from "@/assets/course/profile/Ishani-Das.png";
 import ex20img from "@/assets/20year.png";
 
-
+// 1. Apne logo images yahan import karein (Example paths)
+import GoogleLogo from "@/assets/course/logos/Google_logo.png";
+import FbLogo from "@/assets/course/logos/Facebook-Logo.png";
+import LinkedInLogo from "@/assets/course/logos/linkedIn-logo.png";
+import MicrosoftLogo from "@/assets/course/logos/microsoft-logo.png";
+import JainLogo from "@/assets/course/logos/Jainx-logo.png";
+import HoverPreviewCard from "../ui/videoPlay/hover-paly";
+import { Play } from "lucide-react";
 
 interface Props {
   slug: string;
 }
 
 const CourseBannerSection = ({ slug }: Props) => {
+  // 1. Always call hooks at the very top
+  const { openPopup } = usePopup();
   const course = courses.find((c) => c.slug === slug);
 
   if (!course) return <p>Course not found</p>;
-  // const { openPopup } = usePopup();
+
 
   return (
     <section className="relative bg-[#FAF8F6]">
-      <div className="container mx-auto px-6   py-8 lg:py-12 mt-12 md:mt-4">
+      <div className="container mx-auto px-6 py-8 lg:py-12 mt-12 ">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center justify-center">
 
           {/* Left Content */}
-          <div className="space-y-8 order-2 lg:order-1 text-center lg:text-left">
+          <div className="space-y-4 md:space-y-8 order-2 lg:order-1 text-center lg:text-left">
 
             {/* Badges */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-3">
+            {/* <div className="flex flex-wrap justify-center lg:justify-start gap-3">
               <Badge className="bg-gray-100 text-gray-800 px-4 py-1 rounded-full text-sm font-medium">
                 Job Guarantee
               </Badge>
               <Badge className="bg-indigo-100 text-indigo-800 px-4 py-1 rounded-full text-sm font-medium">
                 Dual Mentorship
               </Badge>
-            </div>
+            </div> */}
 
             {/* Headline */}
-            <h1 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight">
+            <h1 className="text-[1.6rem] md:text-5xl font-bold text-gray-900 leading-tight">
               {course.title}
             </h1>
 
-            {/* Subtext */}
+            {/* Subtext Description */}
             <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-xl mx-auto lg:mx-0">
-              Develop the skills of an AI professional, master the latest Gen AI
-              tools, and learn from experts. All in an online, self-paced setup
-              with job assistance at graduation.
+              {course.description}
             </p>
+            {/* <span className="text-lg font-bold text-Black/90">Become job ready. Become hire worthy. Become unstoppable.</span> */}
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+
+            {/* --- NEW IMAGE SECTION ADDED HERE --- */}
+            <div className="flex flex-wrap justify-center lg:justify-start items-center md:items-left gap-6 pt-1  rounded-lg">
+              <Image src={GoogleLogo} alt="Google" height={20} className="h-6 w-auto object-contain opacity-100 hover:opacity-80 transition-all" />
+              <Image src={FbLogo} alt="Facebook" height={20} className="h-6 w-auto object-contain opacity-100 hover:opacity-80 transition-all" />
+              <Image src={LinkedInLogo} alt="LinkedIn" height={20} className="h-6 w-auto object-contain opacity-100 hover:opacity-80 transition-all" />
+              <Image src={MicrosoftLogo} alt="Microsoft" height={20} className="h-6 w-auto object-contain opacity-100 hover:opacity-80 transition-all" />
+              <Image src={JainLogo} alt="Jain University" height={20} className="h-6 w-auto object-contain opacity-100 hover:opacity-80 transition-all" />
+            </div>
+
+            {/* ------------------------------------ */}
+
+           {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
               <Button
-                // onClick={openPopup}
+                onClick={openPopup}
                 variant="cta"
-                size={"lg"}
-                className="btn-shine"
+                size="lg"
+                className="w-full sm:w-auto text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4"
               >
-                Get a free short course
+                Enroll Now
               </Button>
               <Button
-                // onClick={openPopup}
-                variant="outline"
-                size={"lg"}
-                className="btn-shine"
+                onClick={openPopup}
+                variant="secondary_cta"
+                size="lg"
+                className="w-full sm:w-auto text-base sm:text-lg text-black hover:text-blue-600 btn-shine border-black hover:border-blue-600 px-6 sm:px-8 py-3 sm:py-4 flex items-center justify-center"
               >
-                Apply now
+                <Play className="w-5 h-5 mr-2" />
+                Download Free Brochure
               </Button>
             </div>
 
@@ -76,21 +98,21 @@ const CourseBannerSection = ({ slug }: Props) => {
               <div className="flex -space-x-2">
                 <Image
                   src={NihtImg}
-                  alt="Student"
-                  width={32}
-                  height={32}
-                  className="rounded-full border-2 border-white"
-                />
-                <Image
-                  src={ex20img}
-                  alt="Student"
+                  alt="Payel-Sadhya"
                   width={32}
                   height={32}
                   className="rounded-full border-2 border-white"
                 />
                 <Image
                   src={NihtImg2}
-                  alt="Student"
+                  alt="Kushal-Agarwal"
+                  width={32}
+                  height={32}
+                  className="rounded-full border-2 border-white"
+                />
+                <Image
+                  src={NihtImg3}
+                  alt="Ishani-Das"
                   width={32}
                   height={32}
                   className="rounded-full border-2 border-white"
@@ -105,16 +127,20 @@ const CourseBannerSection = ({ slug }: Props) => {
           {/* Hero Image */}
           <div className="relative order-1 lg:order-2 flex justify-center lg:justify-end mt-10 lg:mt-20">
             <div className="relative w-full aspect-[1/1]">
-              <Image
+              {/* <Image
                 src={heroImage}
                 alt="Student"
                 fill
                 className="rounded-2xl object-cover"
                 priority
-              />
+              /> */}
+              
+              <HoverPreviewCard src="https://youtu.be/3tImUc2NtKs?si=lLC8-jRQGjDk_9KV" />
+             
+              
 
               {/* Rating badge */}
-              <div className="absolute bottom-4 right-4 bg-white shadow-lg rounded-lg px-4 py-2 flex flex-col items-end gap-1">
+              {/* <div className="absolute bottom-4 right-4 bg-white shadow-lg rounded-lg px-4 py-2 flex flex-col items-end gap-1">
                 <span className="text-yellow-500 text-lg leading-none">★★★★★</span>
                 <span className="text-sm font-medium text-gray-700 leading-none">
                   1,667 / 5 Stars
@@ -122,7 +148,7 @@ const CourseBannerSection = ({ slug }: Props) => {
                 <span className="text-xs text-gray-500 font-semibold leading-none">
                   COURSE REPORT
                 </span>
-              </div>
+              </div> */}
             </div>
           </div>
 

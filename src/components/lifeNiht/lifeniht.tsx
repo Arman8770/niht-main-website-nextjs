@@ -70,7 +70,7 @@ const LifeAtNihtGallery: React.FC = () => {
   };
 
   return (
-    <section className="relative w-full overflow-hidden py-10 bg-gradient-to-b from-white to-gray-100 dark:from-black dark:to-gray-900">
+    <section className="relative w-full overflow-hidden py-2 md:py-10 bg-gradient-to-b from-white to-gray-100 dark:from-black dark:to-gray-900">
       <h2 className="text-center text-3xl md:text-4xl font-bold mb-10 text-gray-800 dark:text-white">
         Life at NIHT
       </h2>
