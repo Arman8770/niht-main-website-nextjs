@@ -15,7 +15,7 @@ import GoogleLogo from "@/assets/course/logos/Google_logo.png";
 import FbLogo from "@/assets/course/logos/Facebook-Logo.png";
 import LinkedInLogo from "@/assets/course/logos/linkedIn-logo.png";
 import MicrosoftLogo from "@/assets/course/logos/microsoft-logo.png";
-import JainLogo from "@/assets/course/logos/Jainx-logo.png";
+// import JainLogo from "@/assets/course/logos/Jainx-logo.png";
 import HoverPreviewCard from "../ui/videoPlay/hover-paly";
 import { Play } from "lucide-react";
 
@@ -31,13 +31,14 @@ const CourseBannerSection = ({ slug }: Props) => {
   if (!course) return <p>Course not found</p>;
 
 
+
   return (
     <section className="relative bg-[#FAF8F6]">
       <div className="container mx-auto px-6 py-8 lg:py-12 mt-12 ">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center justify-center">
 
           {/* Left Content */}
-          <div className="space-y-4 md:space-y-8 order-2 lg:order-1 text-center lg:text-left">
+          <div className="space-y-2 md:space-y-8 order-2 lg:order-1 text-center lg:text-left">
 
             {/* Badges */}
             {/* <div className="flex flex-wrap justify-center lg:justify-start gap-3">
@@ -49,10 +50,26 @@ const CourseBannerSection = ({ slug }: Props) => {
               </Badge>
             </div> */}
 
-            {/* Headline */}
-            <h1 className="text-[1.6rem] md:text-5xl font-bold text-gray-900 leading-tight">
-              {course.title}
-            </h1>
+            {/* Headline with Gradient Function Applied */}
+            <div className="mb-4 block lg:hidden">
+              <h1 className="text-[1.8rem] md:text-[2.1rem] font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-800 leading-tight">
+                {course.title}
+              </h1>
+              <h1 className="text-[1.8rem] md:text-[2.1rem] font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-800 leading-tight">
+                {course.title2}
+              </h1>
+              <h1 className="text-[1.6rem] md:text-[2.1rem] font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-800 leading-tight">
+                {course.title3}
+              </h1>
+            </div>
+            <div className="mb-4 hidden lg:block">
+              <h1 className="text-[1.8rem] md:text-[2.1rem] font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-800 leading-tight">
+                {course.title} {course.title2}
+              </h1>
+              <h1 className="text-[1.6rem] md:text-[2.1rem] font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-800 leading-tight">
+                {course.title3}
+              </h1>
+            </div>
 
             {/* Subtext Description */}
             <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-xl mx-auto lg:mx-0">
@@ -63,16 +80,15 @@ const CourseBannerSection = ({ slug }: Props) => {
 
             {/* --- NEW IMAGE SECTION ADDED HERE --- */}
             <div className="flex flex-wrap justify-center lg:justify-start items-center md:items-left gap-6 pt-1  rounded-lg">
-              <Image src={GoogleLogo} alt="Google" height={20} className="h-6 w-auto object-contain opacity-100 hover:opacity-80 transition-all" />
-              <Image src={FbLogo} alt="Facebook" height={20} className="h-6 w-auto object-contain opacity-100 hover:opacity-80 transition-all" />
-              <Image src={LinkedInLogo} alt="LinkedIn" height={20} className="h-6 w-auto object-contain opacity-100 hover:opacity-80 transition-all" />
-              <Image src={MicrosoftLogo} alt="Microsoft" height={20} className="h-6 w-auto object-contain opacity-100 hover:opacity-80 transition-all" />
-              <Image src={JainLogo} alt="Jain University" height={20} className="h-6 w-auto object-contain opacity-100 hover:opacity-80 transition-all" />
+              <Image src={GoogleLogo} alt="Google" height={24} className="h-7 w-auto object-contain opacity-100 hover:opacity-80 transition-all" />
+              <Image src={FbLogo} alt="Facebook" height={24} className="h-7 w-auto object-contain opacity-100 hover:opacity-80 transition-all" />
+              <Image src={LinkedInLogo} alt="LinkedIn" height={24} className="h-7 w-auto object-contain opacity-100 hover:opacity-80 transition-all" />
+              <Image src={MicrosoftLogo} alt="Microsoft" height={24} className="h-7 w-auto object-contain opacity-100 hover:opacity-80 transition-all" />
             </div>
 
             {/* ------------------------------------ */}
 
-           {/* CTA Buttons */}
+            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
               <Button
                 onClick={openPopup}
@@ -134,10 +150,10 @@ const CourseBannerSection = ({ slug }: Props) => {
                 className="rounded-2xl object-cover"
                 priority
               /> */}
-              
+
               <HoverPreviewCard src="https://youtu.be/3tImUc2NtKs?si=lLC8-jRQGjDk_9KV" />
-             
-              
+
+
 
               {/* Rating badge */}
               {/* <div className="absolute bottom-4 right-4 bg-white shadow-lg rounded-lg px-4 py-2 flex flex-col items-end gap-1">

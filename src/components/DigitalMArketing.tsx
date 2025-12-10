@@ -32,7 +32,7 @@ const DigitalMarketing = () => {
       {/* <WhyChooseSection /> */}
       <PlacementPartnersSection />
 
-      <SocialProofSection />
+      <SocialProofSection successTitle="Success That Speaks for Itself" successSubTitle="From classroom to top companies, our students have turned practical skills into powerful careers. Their stories reflect the impact of real training, real projects and real industry exposure." />
       <OurTeam />
       
       <FeaturesFaq />

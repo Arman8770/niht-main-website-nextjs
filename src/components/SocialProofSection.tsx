@@ -111,8 +111,12 @@ function StatCounter({ icon, value, label, suffix, delay = 0 }: StatCounterProps
     </motion.div>
   );
 }
+type SocialProofProps = {
+  successTitle: string;
+  successSubTitle: string;
+};
 
-const SocialProofSection = () => {
+const SocialProofSection: React.FC<SocialProofProps> = ({ successTitle, successSubTitle }) =>{
   const stats = [
     {
       icon: <Users className="w-8 h-8 text-blue-600" />,
@@ -176,10 +180,10 @@ const SocialProofSection = () => {
             </Button>
           </a>
           <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-2">
-             Success That Speaks for Itself
+             {successTitle}
           </h2>
           <p className="text-m md:text-lg text-muted-foreground max-w-3xl mx-auto">
-            From classroom to top companies, our students have turned practical skills into powerful careers. Their stories reflect the impact of real training, real projects and real industry exposure.
+            {successSubTitle}
           </p>
         </div>
 

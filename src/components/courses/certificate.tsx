@@ -11,8 +11,12 @@ export const CertificationSection: React.FC = () => {
       <div className="container mx-auto px-4">
         {/* Heading */}
         <div className="text-center mb-6 md:mb-12">
-          <h2 className="text-2xl md:text-4xl font-extrabold text-gray-900 leading-tight tracking-tight">
+          <h2 className="hidden md:block text-2xl md:text-4xl font-extrabold text-gray-900 leading-tight tracking-tight">
             Get Hired with Globally Recognised Certifications
+          </h2>
+
+          <h2 className="block md:hidden text-2xl md:text-4xl font-extrabold text-gray-900 leading-tight tracking-tight">
+            Globally Recognised Certifications
           </h2>
           {/* <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
             Stand out in the job market with certifications that top employers trust. Every credential you earn adds real credibility to your resume and shows companies that you’re trained, tested and ready for real digital marketing work.

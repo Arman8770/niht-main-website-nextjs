@@ -925,57 +925,57 @@ const TimelineItem = ({ data, isLocked, isBlurry }: { data: TimelineItemData; is
 };
 
 // 2. Unlock Form Modal
-const UnlockModal = ({ isOpen, onClose, onUnlock }: { isOpen: boolean; onClose: () => void; onUnlock: () => void }) => {
-  if (!isOpen) return null;
+// const UnlockModal = ({ isOpen, onClose, onUnlock }: { isOpen: boolean; onClose: () => void; onUnlock: () => void }) => {
+//   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setTimeout(() => {
-      onUnlock();
-      onClose();
-    }, 800);
-  };
+//   const handleSubmit = (e: React.FormEvent) => {
+//     e.preventDefault();
+//     setTimeout(() => {
+//       onUnlock();
+//       onClose();
+//     }, 800);
+//   };
 
-  return (
-    <AnimatePresence>
-      <motion.div
-        // Change "items-center" to "items-start" and add "pt-20" (padding top)
-        className="fixed inset-0 z-[100] flex items-start justify-center mt-24 md:mt-30 p-4 bg-black/60 backdrop-blur-sm"
-      >
-        <motion.div
-          initial={{ scale: 0.95, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }}
-          className="bg-white  dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden relative p-8"
-        >
-          <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
-            <X className="w-5 h-5" />
-          </button>
-          <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
-            <Unlock className="w-6 h-6 text-blue-600" />
-          </div>
-          <h2 className="text-2xl font-bold text-center mb-2 text-gray-900 dark:text-white">Unlock Full Course</h2>
-          <p className="text-center text-gray-500 text-sm mb-6">Enter your details to access advanced modules.</p>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">Full Name*</label>
-              <input required type="text" placeholder="Full Name" className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none dark:bg-gray-800 dark:border-gray-700" />
-            </div>
-            <div>
-              <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">Mobile No*</label>
-              <input required type="tel" placeholder="Mob.No." className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none dark:bg-gray-800 dark:border-gray-700" />
-            </div>
-            <div>
-              <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">Email Address*</label>
-              <input required type="email" placeholder="Email" className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none dark:bg-gray-800 dark:border-gray-700" />
-            </div>
-            <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg shadow-lg transition-transform hover:scale-[1.02]">
-              Unlock Your Future
-            </button>
-          </form>
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
-  );
-};
+//   return (
+//     <AnimatePresence>
+//       <motion.div
+//         // Change "items-center" to "items-start" and add "pt-20" (padding top)
+//         className="fixed inset-0 z-[100] flex items-start justify-center mt-24 md:mt-30 p-4 bg-black/60 backdrop-blur-sm"
+//       >
+//         <motion.div
+//           initial={{ scale: 0.95, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }}
+//           className="bg-white  dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden relative p-8"
+//         >
+//           <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+//             <X className="w-5 h-5" />
+//           </button>
+//           <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+//             <Unlock className="w-6 h-6 text-blue-600" />
+//           </div>
+//           <h2 className="text-2xl font-bold text-center mb-2 text-gray-900 dark:text-white">Unlock Full Course</h2>
+//           <p className="text-center text-gray-500 text-sm mb-6">Enter your details to access advanced modules.</p>
+//           <form onSubmit={handleSubmit} className="space-y-4">
+//             <div>
+//               <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">Full Name*</label>
+//               <input required type="text" placeholder="Full Name" className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none dark:bg-gray-800 dark:border-gray-700" />
+//             </div>
+//             <div>
+//               <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">Mobile No*</label>
+//               <input required type="tel" placeholder="Mob.No." className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none dark:bg-gray-800 dark:border-gray-700" />
+//             </div>
+//             <div>
+//               <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">Email Address*</label>
+//               <input required type="email" placeholder="Email" className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none dark:bg-gray-800 dark:border-gray-700" />
+//             </div>
+//             <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg shadow-lg transition-transform hover:scale-[1.02]">
+//               Unlock Your Future
+//             </button>
+//           </form>
+//         </motion.div>
+//       </motion.div>
+//     </AnimatePresence>
+//   );
+// };
 
 // 3. Bottom Sticky Overlay
 const OverlayUnlockCTA = ({ onOpenModal, visible }: { onOpenModal: () => void; visible: boolean }) => (
@@ -1063,7 +1063,7 @@ export default function CoursePage() {
 
   // --- RENDER FUNCTION ---
   // Accepts a specific ref to attach to the locked section
-  const renderModules = (modules: TimelineItemData[], assignedRef: React.RefObject<HTMLDivElement | null>) => {
+ const renderModules = (modules: TimelineItemData[], assignedRef: React.RefObject<HTMLDivElement | null>) => {
     // 1. If Unlocked: Show simple list
     if (isUnlocked) {
       return modules.map((item) => (
@@ -1074,9 +1074,12 @@ export default function CoursePage() {
     }
 
     // 2. If Locked: Split and show Sticky Card
-    const lockIndex = Math.floor(modules.length / 2);
+    const lockIndex = 2;
     const unlockedModules = modules.slice(0, lockIndex);
     const lockedModules = modules.slice(lockIndex);
+    
+    // OPTIONAL: Only render a few locked items to save performance since we cut it off anyway
+    const lockedVisuals = lockedModules.slice(0, 25); 
 
     return (
       <div className="flex flex-col relative">
@@ -1091,17 +1094,14 @@ export default function CoursePage() {
           </div>
         ))}
 
-        {/* Locked Section Wrapper (Ref Attached Here) */}
-        <div ref={assignedRef} className="relative min-h-[500px]">
+        {/* Locked Section Wrapper */}
+        <div ref={assignedRef} className="relative">
 
-          {/* --- STICKY CENTER CARD --- */}
-          <div className="sticky top-[30%] z-30 w-full flex justify-center h-0 overflow-visible pointer-events-none">
-            <div className="transform translate-y-4 pointer-events-auto">
-              <div className=" p-6   text-center w-[280px] md:w-[320px]">
-                {/* <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <Lock className="w-6 h-6 text-blue-600" />
-                    </div> */}
-
+          {/* --- CTA CARD (Centered Absolute) --- */}
+          {/* Using absolute inset-0 z-30 centers it over the blurred content perfectly */}
+          <div className=" absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
+            <div className="pointer-events-auto transform translate-y-[-20%]">
+              <div className="p-6 text-center w-[280px] md:w-[320px]">
                 <button
                   onClick={() => setIsModalOpen(true)}
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2"
@@ -1113,15 +1113,26 @@ export default function CoursePage() {
             </div>
           </div>
 
-          {/* --- BLURRED BACKGROUND --- */}
-          <div className="opacity-40 filter blur-[2px] pointer-events-none select-none">
-            {lockedModules.map((item) => (
+          {/* --- BLURRED BACKGROUND CONTAINER --- */}
+          {/* Key Changes: 
+              1. max-h-[60vh] or h-[500px]: Limits height to roughly one scroll.
+              2. overflow-hidden: Cuts off the rest of the content.
+              3. mask-image: Creates a smooth fade out at the bottom.
+          */}
+          <div className="
+              opacity-40 filter blur-[2px] pointer-events-none select-none
+              relative overflow-hidden h-[500px] 
+              after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-32 after:bg-gradient-to-t after:from-white dark:after:from-gray-900 after:to-transparent
+          ">
+            {
+            lockedVisuals.map((item) => (
               <div key={item.id} className="mb-6">
                 <TimelineItem data={item} isLocked={true} isBlurry={true} />
               </div>
             ))}
-            {/* Extra padding to ensure scroll feels deep enough */}
-            <div className="h-24"></div>
+            
+            {/* Visual filler to ensure it looks like there is more */}
+            <div className="h-full w-full bg-gray-100 dark:bg-gray-800 opacity-20"></div>
           </div>
 
         </div>
@@ -1129,14 +1140,15 @@ export default function CoursePage() {
     );
   };
 
+
   return (
     <section className="w-full bg-gray-50 rounded-xl md:py-10 h-[80vh] flex flex-col overflow-hidden relative">
 
-      <UnlockModal
+      {/* <UnlockModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onUnlock={() => setIsUnlocked(false)}
-      />
+      /> */}
 
       {/* ============================ */}
       {/* 📱 MOBILE VIEW                */}

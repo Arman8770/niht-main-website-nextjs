@@ -94,8 +94,11 @@ const ToolsSection = () => {
   return (
     <section id="placements" className="py-12 md:py-16 bg-gradient-to-l from-white to-blue-100/60">
       <div className="">
-        <h3 className="text-2xl md:text-4xl text-center font-bold text-foreground mb-2 md:mb-6">
+        <h3 className="hidden md:block text-2xl md:text-4xl text-center font-bold text-foreground mb-2 md:mb-6">
           Get Hands-On With Industry‑Standard Digital Marketing & AI Tools
+        </h3>
+        <h3 className="block md:hidden text-2xl md:text-4xl text-center font-bold text-foreground mb-2 md:mb-6">
+          Tools You will Learn
         </h3>
         {/* <p className="text-m md:text-lg text-center text-muted-foreground mb-8">
           Our alumni working at India&apos;s top companies

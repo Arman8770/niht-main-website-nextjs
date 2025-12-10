@@ -21,6 +21,7 @@ interface OurCourseProps {
     description: string
     WhyChoose: string
     videoUrl?: string
+    Gain?:string[]
     stats?: { icon: React.ReactNode; value: number; label: string; suffix: string }[]
     services?: {
       icon: React.ReactNode

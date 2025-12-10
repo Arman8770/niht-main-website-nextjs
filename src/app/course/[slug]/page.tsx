@@ -45,18 +45,26 @@ export default async function CoursePage({ params }: PageProps) {
     <div className="overflow-hidden">
       <CourseBannerSection slug={slug} />
       <OurCourseUpdate course={course} />
-      <CohortTable />
+      {/* <CohortTable /> */}
       <OurAlumni />
-      <SocialProofSection />
+      <SocialProofSection successTitle={course?.successTitle} successSubTitle={course?.successSubTitle} />
       {/* <PlacementPartnersSection /> */}
       <ToolsSection />
       {/* <LandingAccordionItem /> */}
       {/* <CourseSection /> */}
       <CertificationSection />
+      <span className='hidden md:block'>
       <SmallBanner 
-        title="Become job ready. Become hire worthy. Become unstoppable." 
+        title="Still confused? Book a session with our senior career counsellor." 
         buttonText="Enroll Now" 
       />
+      </span>
+       <span className='block md:hidden'>
+      <SmallBanner 
+        title="Talk to our career counsellor." 
+        buttonText="Enroll Now" 
+      />
+      </span>
       {/* <ToolsLogo /> */}
 
       {/* <OurTeam /> */}

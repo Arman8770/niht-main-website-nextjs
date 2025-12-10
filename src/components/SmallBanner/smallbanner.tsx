@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Button } from "../ui/button";
 import HeroImage from "@/assets/NIHT-LOGO-black-2.png";
+import { usePopup } from "../form/PopupProvider";
 
 interface SmallBannerProps {
   title?: string;
@@ -15,6 +16,7 @@ export default function SmallBanner({
   buttonText = "Enroll Now", // Default button text
   onButtonClick 
 }: SmallBannerProps) {
+  const {openPopup}=usePopup();
   return (
     <section className="body-font bg-white">
       <div className="container mx-auto px-5 py-12 md:py-6">
@@ -32,8 +34,8 @@ export default function SmallBanner({
           </div>
 
           {/* Dynamic Text Content */}
-          <div className="text-center md:text-left mb-6 md:mb-0 flex-1 md:pl-8">
-            <h1 className="text-2xl md:text-3xl font-bold text-white">
+          <div className="text-center  mb-6 md:mb-0 flex-1 md:pl-8">
+            <h1 className="text-xl md:text-3xl font-bold text-white">
               {title}
             </h1>
           </div>
@@ -43,7 +45,7 @@ export default function SmallBanner({
             variant="cta" 
             size={"lg"} 
             className="items-center justify-center"
-            onClick={onButtonClick}
+            onClick={openPopup}
           >
             {buttonText}
           </Button>
